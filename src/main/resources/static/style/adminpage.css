@@ -1,0 +1,24 @@
+
+.container-fluid{
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+html,
+body {
+    height: 100%;
+}
+.wrapper {
+    height: 100%;
+}
+
+.col-sm-3 {
+    box-sizing: border-box;
+    min-height: 100%;
+    padding-bottom: 250px;
+}
+
+.footer {
+    height: 80px;
+    margin-top: -80px;
+}

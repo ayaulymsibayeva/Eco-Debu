@@ -1,0 +1,239 @@
+<html xmlns:th = "http://www.thymeleaf.org"
+      xmlns:layout = "http://ultraq.net.nz/thymeleaf/layout" layout:decorator = "layout/adminpage.html"
+      xmlns:sec = "http://www.thymeleaf.org/extras/spring-security">
+
+
+<div layout:fragment="site_cont">
+
+                <div class="container-fluid mt-3">
+                    <h3 th:text="${item.name}"></h3>
+                    <form th:action="@{'/editItem'}" method="post">
+                            <input type="hidden"  name="item_id" th:value="${item.getId()}">
+                            <div class="form-group">
+                                <label th:text="#{label.name}"></label>
+                                <input type="text" class="form-control" name="item_name" th:value="${item.getName()}">
+                            </div>
+                            <div class="form-group">
+                                <label th:text="#{label.description}"></label>
+                                <textarea style="min-height: 100px" class="form-control" name="item_description" th:text="${item.getDescription()}" ></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label th:text="#{label.price}"></label>
+                                <input type="number" class="form-control" name="item_price" th:value="${item.getPrice()}">
+                            </div>
+                            <div class="form-group">
+                                <label th:text="#{label.stars}"></label>
+                                <input type="number" class="form-control" name="item_stars" th:value="${item.getStars()}">
+                            </div>
+                            <div class="form-group">
+                                <label th:text="#{label.Date}"></label>
+                                <input type="date" class="form-control" name="item_addedDate" th:value="${item.getAddedDate()}">
+                            </div>
+                            <div class="form-group">
+                                <label th:text="#{label.inTopPage}"></label>
+                                <select class="form-control" name="item_inTopPage">
+                                    <option th:text="#{option.YES}" th:value="${true}" ></option>
+                                    <option th:text="#{option.NO}" th:value="${false}" th:selected="${item.inTopPage==false}"></option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Тип</label>
+                                <select class="form-control" name="type_id">
+                                    <option th:each="t : ${types}" th:text="${t.name}" th:selected="${t.id}==${item!=null?item.type.id:'0'}" th:value="${t.id}"></option>
+                                </select>
+                            </div>
+
+                        <div class="form-group">
+                            <label>Категория</label>
+                            <select class="form-control" name="category_id">
+                                <option th:each="c : ${categories}" th:text="${c.name}" th:selected="${c.id}==${item!=null?item.category.id:'0'}" th:value="${c.id}"></option>
+                            </select>
+                        </div>
+
+
+
+                            <a th:href="@{'/deleteItem?item_id='+${item.id}}" class="btn btn-danger" ><img style="height: 15px;width: 15px" th:src="@{'/icons/trash.png'}">   <span th:text="#{button.delete}"></span></a>
+                            <button  class="btn btn-success" ><img style="height: 15px;width: 15px" th:src="@{'/icons/diskette.png'}">   <span th:text="#{button.editItem}"></span></button>
+
+                    </form>
+
+
+
+
+                </div>
+
+
+
+    <div class="container-fluid">
+                <h3 th:text="#{label.categories}"></h3>
+                <table class="table table-striped">
+                    <tbody>
+
+
+                    <tr th:each="s : ${sizes}">
+                        <form th:action="@{'/assignsize'}" method="post">
+                            <input type="hidden" th:value="${item.id}" name="item_id">
+                            <input type="hidden" th:value="${s.id}" name="size_id">
+                            <td th:text="${s.name}"></td>
+                            <td width="10%">
+                                <button th:hidden="${item.sizes.contains(s)}" class="btn btn-success btn-sm"><img style="height: 15px;width: 15px" th:src="@{'/icons/add.png'}" class="card-img-top" alt="..."></button>
+                                <a th:href="@{'/assigndeletesize?item_id='+${item.id}+'&size_id='+${s.id}}" th:hidden="${!item.sizes.contains(s)}"  class="btn btn-danger btn-sm"><img style="height: 15px;width: 15px" th:src="@{'/icons/minus.png'}" class="card-img-top" alt="..."></a>
+                            </td>
+                        </form>
+                    </tr>
+
+                    </tbody>
+                </table>
+
+        <h3 th:text="#{picture}"></h3>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th width="10%" th:text="#{picture}"></th>
+                <th>URL</th>
+                <th width="10%"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+
+                    <div class="card" style="width: 50px;height: 50px;">
+                        <img th:src="@{'/picturesItem/'+${item.smallPicURL}}" style="width: 100%; height: 100%"  class="card-img-top" alt="...">
+                    </div>
+
+
+                </td>
+                <td th:text="${item.smallPicURL}"></td>
+
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                    <button  class="btn btn-success btn-sm" data-toggle="modal" data-target="#PictureItem"><img style="height: 15px;width: 15px" th:src="@{'/icons/add.png'}" class="card-img-top" alt="..."></button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+
+
+                <h3 th:text="#{picture}"></h3>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th width="10%" th:text="#{picture}"></th>
+                        <th>URL</th>
+                        <th width="20%" th:text="#{addedDate}"></th>
+                        <th width="10%"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="pic : ${pictures}">
+                        <td>
+
+                            <div class="card" style="width: 50px;height: 50px;">
+                                <img th:src="@{'/viewPicture?url='+${pic.url}}" style="padding: 5px;"  class="card-img-top" alt="...">
+                            </div>
+
+
+                        </td>
+                        <td th:text="${pic.url}"></td>
+                        <td th:text="${#dates.format(pic.addedDate, 'dd.MM.yyyy HH:mm')}"></td>
+                        <td>
+                            <a th:href="@{'/deletePicture?pic_id='+${pic.id}}" class="btn btn-danger btn-sm"><img style="height: 15px;width: 15px" th:src="@{'/icons/minus.png'}" class="card-img-top" alt="..."></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <button  class="btn btn-success btn-sm" data-toggle="modal" data-target="#Picture"><img style="height: 15px;width: 15px" th:src="@{'/icons/add.png'}" class="card-img-top" alt="..."></button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+
+
+        <div class="modal fade" id="Picture" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel" th:text="#{addPicture}"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form th:action="@{'/uploadPicture'}" method="post" enctype="multipart/form-data">
+                    <div class="modal-body">
+
+
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="customFile" name="item_picture">
+                                <input type="hidden" name="item_id" th:value="${item.id}">
+                                <label class="custom-file-label" for="customFile" th:text="#{chooseFile}"></label>
+                            </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" th:text="#{button.close}"></button>
+                        <button class="btn btn-success" th:text="#{button.add}"></button>
+                    </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="PictureItem" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" th:text="#{addPicture}"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form th:action="@{'/uploadPictureItem'}" method="post" enctype="multipart/form-data">
+                        <div class="modal-body">
+
+
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" name="item_picture">
+                                <input type="hidden" name="item_id" th:value="${item.id}">
+                                <label class="custom-file-label" for="customFile" th:text="#{chooseFile}"></label>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" th:text="#{button.close}"></button>
+                            <button class="btn btn-success" th:text="#{button.add}"></button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</html>

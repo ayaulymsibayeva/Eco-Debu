@@ -1,0 +1,16 @@
+.btn-outline{
+
+    border-color: #8ca8f3;
+
+
+}
+
+.btn-outline:hover,
+
+.btn-outline:focus,
+
+.btn-outline:visited{
+
+    background-color: #8ca8f3;
+
+}

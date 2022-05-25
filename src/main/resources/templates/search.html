@@ -1,0 +1,73 @@
+<html xmlns:th = "http://www.thymeleaf.org"
+      xmlns:layout = "http://ultraq.net.nz/thymeleaf/layout" layout:decorator = "layout/main.html">
+
+
+<div layout:fragment="site_content" >
+<div class="container mt-2">
+    <div class="row">
+
+
+
+        <div class="col mt-2">
+            <div class="container-fluid">
+                        <form th:action="@{'/searchDetails'}" method="get">
+                            <div class="row">
+                                <div class="col-3">
+                                        <label th:text="#{label.name}"></label>
+                                    <input class="form-control" type="text" name="item_name"  placeholder="Поиск...">
+                                </div>
+                                <div class="col-3">
+                                    <label th:text="#{li.brands}"></label>
+                                    <select class="form-control" name="type_id">
+                                        <option th:each="c:${types}" th:text="${c.name}" th:value="${c.id}" th:selected="${c.id}==${type!=null?type.id:'0'}"></option>
+                                    </select>
+                                </div>
+                                <div class="col-3">
+                                    <label style="float: right" th:text="#{label.orderByPrice}"></label>
+                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                            <label class="btn btn-secondary btn-sm" style="height: 30px">
+                                                <input type="radio" name="options" id="option2" value="ascending"> <p th:text="#{h5.asc}"></p>
+                                            </label>
+                                            <label class="btn btn-secondary btn-sm" style="height: 30px">
+                                                <input type="radio" name="options" id="option3" value="descending"> <p th:text="#{h5.desc}"></p>
+                                            </label>
+                                    </div>
+                                </div>
+                                <div class="col-2 mt-4">
+                                    <button class="btn btn-primary" style="margin-top: 8px;background-color: rgba(21,97,69,0.93);width: 100px;float: right" th:text="#{search}"></button>
+                                </div>
+            </div>
+                            <div class="row mt-3">
+                                <div class="col-5">
+                                    <h4 style="" th:text="#{label.searchResult}"></h4>
+                                </div>
+                                <div class="col-4">
+
+                                </div>
+                            </div>
+                        </form>
+
+
+
+
+                <div class="row row-cols-1 row-cols-md-4" style="height: inherit">
+                <div class="col mb-4" th:each="it : ${items}" style="height: inherit">
+                    <div class="card" style="height: inherit">
+                        <img style="height: inherit"  th:src="@{'/picturesItem/'+${it.smallPicURL}}" class="card-img-top" alt="...">
+                        <div class="card-body" >
+                            <a style="font-weight: bold" th:href="@{'/details/'+${it.id}}" class="card-title" th:text="${it.name}"></a>
+                            <h6 style="font-weight: bolder" th:text="${it.price}+'kzt'"></h6>
+
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+
+</html>

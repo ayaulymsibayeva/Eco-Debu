@@ -1,0 +1,19 @@
+.nav-link  {
+    position: relative;
+    color: #000;
+    font-family: 'Montserrat', sans-serif;
+}
+.nav-link:before {
+    content: '';
+    position: absolute;
+    width: 80%;
+    height: 2px;
+    background: #000;
+    bottom: 0;
+    transition: .5s;
+    transform: scale(0);
+    transform-origin: left;
+}
+.nav-link:hover:before {
+    transform: scale(1);
+}

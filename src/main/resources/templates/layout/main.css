@@ -1,0 +1,17 @@
+*{
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+
+.container{
+    padding-bottom: 100px;
+}
+
+.footer{
+    margin-top: -100px;
+    /*Минус Высота футера*/
+    height: 100px;
+    position: absolute;
+    bottom: 0;
+}

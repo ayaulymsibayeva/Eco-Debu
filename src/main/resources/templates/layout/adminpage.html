@@ -1,0 +1,47 @@
+<html xmlns:th = "http://www.thymeleaf.org"
+      xmlns:layout = "http://ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec = "http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Админ Панель</title>
+    <link rel="stylesheet" th:href="@{'https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css'}" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="/style/adminpage.css">
+
+    <script th:src="@{'https://code.jquery.com/jquery-3.5.1.slim.min.js'}" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script th:src="@{'https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js'}" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+</head>
+
+<body>
+<div class="wrapper">
+<div class="row">
+    <div class = "col-sm-3" style="background-color: #e9ecef">
+        <div class="mt-5">
+            <div class="container">
+                <h5>Админ Панель</h5>
+                <div class="mt-4">
+                <a class="nav-link" style="color: black" th:href="@{'/userAdmin'}" sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_MODERATOR')"><p>Пользователи</p></a>
+                <a class="nav-link" style="color: black" th:href="@{'/roleAdmin'}" sec:authorize="hasAnyRole('ROLE_ADMIN')"><p>Роли</p></a>
+                <a class="nav-link" style="color: black" th:href="@{'/admin'}" sec:authorize="hasAnyRole('ROLE_ADMIN')"><p>Категории</p></a>
+                <a class="nav-link" style="color: black" th:href="@{'/adminType'}" sec:authorize="hasAnyRole('ROLE_ADMIN')"><p>Типы</p></a>
+                <a class="nav-link" style="color: black" th:href="@{'/adminItem'}" sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_MODERATOR')"><p>Товары</p></a>
+                <a class="nav-link" style="color: black" th:href="@{'/adminSize'}" sec:authorize="hasAnyRole('ROLE_ADMIN')"><p>Размеры</p></a>
+                <a class="nav-link" style="color: black" th:href="@{'/soldItemAdmin'}" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_MODERATOR')"><p>Проданные товары</p></a>
+                <a class="nav-link" style="color: black" th:href="@{'/'}" sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_MODERATOR')"><p>Выйти</p></a>
+                </div>
+                </div>
+        </div>
+    </div>
+
+
+
+    <div class="col-9 mt-4">
+
+    <div class="content" layout:fragment="site_cont" ></div>
+
+    </div>
+
+
+
+
+</body>

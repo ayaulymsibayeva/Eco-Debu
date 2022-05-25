@@ -1,0 +1,20 @@
+<html xmlns:th = "http://www.thymeleaf.org"
+      xmlns:layout = "http://ultraq.net.nz/thymeleaf/layout" layout:decorator = "layout/main.html">
+
+
+<div layout:fragment="site_content" >
+    <section class="vh-65">
+        <div class="container h-65">
+            <div class="row d-flex justify-content-center align-items-center h-65">
+                <div class="container text-center">
+                    <h3>You have signed up successfully!</h3>
+                    <p>Please check your email to verify your account.</p>
+                    <h4><a th:href="@{'/login'}">Click here to Login</a></h4>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+</html>
