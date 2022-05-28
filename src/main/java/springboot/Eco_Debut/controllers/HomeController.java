@@ -1339,13 +1339,12 @@ public class HomeController {
                 File file2 = new File(uploadItemPicture + picName + extension);
                 System.out.println("PAAAAAAAATH");
 
-                Path path = Paths.get(uploadItemPicture + picName + extension);
-                Files.write(path, bytes);
+                file.transferTo(file2);
                 System.out.println("PAAAAAAAATH");
                 System.out.println("PAAAAAAAATH");
 
 
-                item.setSmallPicURL(path.getFileName().toString());
+                item.setSmallPicURL(file.getOriginalFilename());
 
                 itemService.saveItem(item);
                 return "redirect:/detailsAdmin/" + itemId;
