@@ -1313,7 +1313,7 @@ public class HomeController {
     @PostMapping(value = "/uploadPictureItem")
     public String uploadPictureItem(@RequestParam(name = "item_picture") MultipartFile file,
                                     @RequestParam(name = "item_id") Long itemId) {
-        if (Objects.equals(file.getContentType(), "image/jpeg") || file.getContentType().equals("image/png")) {
+        if (Objects.equals(file.getContentType(), "image/jpeg") ||Objects.equals(file.getContentType(), "image/jpg") || file.getContentType().equals("image/png")) {
             String extension;
             switch (file.getContentType()) {
                 case IMAGE_PNG:
