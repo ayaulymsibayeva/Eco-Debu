@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService {
         helper.setSubject(subject);
 
         content = content.replace("[[name]]", user.getFullName());
-        String verifyURL = siteURL + "/verify?code=" + user.getVerificationCode();
+        String verifyURL = "https://ecodebut.kz/verify?code=" + user.getVerificationCode();
 
         content = content.replace("[[URL]]", verifyURL);
 
