@@ -41,7 +41,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login").permitAll() // Login , login.html
                 .usernameParameter("user_email") // <input type="email" name="user_email">
                 .passwordParameter("user_password")// <input type="password" name="user_password">
-                .loginProcessingUrl("/auth").permitAll() // <form th:action="@{'/auth'}" method="post">
+                .loginProcessingUrl("" +
+                        "/auth").permitAll() // <form th:action="@{'/auth'}" method="post">
                 .failureUrl("/login?error")
                 .defaultSuccessUrl("/profile");
 

@@ -664,10 +664,10 @@ public class HomeController {
 
 
         if (user != null) {
-            model.addAttribute("message", "A user with this email already exists");
+            return  "redirect:/registration?userExist";
         } else {
             if (!password.equals(re_password)) {
-                model.addAttribute("message", "Wrong Retype Password");
+                return  "redirect:/registration?password";
             } else {
                 user = new Users();
                 user.setEmail(email);
@@ -689,7 +689,7 @@ public class HomeController {
             }
         }
 
-        return "redirect:/registration";
+        return "redirect:/registration?error";
     }
 
 
