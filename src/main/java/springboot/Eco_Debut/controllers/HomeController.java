@@ -689,7 +689,7 @@ public class HomeController {
             }
         }
 
-        return "";
+        return "redirect:/registration";
     }
 
 

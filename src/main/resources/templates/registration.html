@@ -14,11 +14,11 @@
 
                                     <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-2">Регистрация</p>
 
-                                        <div class="alert alert-danger" role="alert" th:hidden="${message==null}">
+                                        <div class="alert alert-danger" role="alert" th:hidden="${message!=null}">
                                             <span th:text="${message}"></span>
                                         </div>
                                         <div class="alert alert-success" role="alert" th:hidden="${success==null}">
-                                            <span th:text="${message}"></span>
+                                            <span th:text="${success}"></span>
                                         </div>
                                         <form th:action="@{'/registr'}" method="post">
                                             <div class="form-group">
