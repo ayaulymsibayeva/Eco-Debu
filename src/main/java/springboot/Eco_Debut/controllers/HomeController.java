@@ -1313,6 +1313,12 @@ public class HomeController {
     @PostMapping(value = "/uploadPictureItem")
     public String uploadPictureItem(@RequestParam(name = "item_picture") MultipartFile file,
                                     @RequestParam(name = "item_id") Long itemId) {
+        System.out.println(file.getContentType());
+        System.out.println(file.getContentType());
+        System.out.println(file.getContentType());
+        System.out.println(file.getContentType());
+        System.out.println(file.getContentType());
+        System.out.println(file.getContentType());
         if (Objects.equals(file.getContentType(), "image/jpeg") ||Objects.equals(file.getContentType(), "image/jpg") || file.getContentType().equals("image/png")) {
             String extension;
             switch (file.getContentType()) {
@@ -1327,8 +1333,16 @@ public class HomeController {
                 String picName = UUID.randomUUID().toString();
 
                 byte[] bytes = file.getBytes();
+                System.out.println("PAAAAAAAATH");
+                System.out.println("PAAAAAAAATH");
+                System.out.println("PAAAAAAAATH");
+                System.out.println("PAAAAAAAATH");
                 Path path = Paths.get(uploadItemPicture + picName + extension);
                 Files.write(path, bytes);
+                System.out.println("PAAAAAAAATH");
+                System.out.println("PAAAAAAAATH");
+                System.out.println("PAAAAAAAATH");
+                System.out.println("PAAAAAAAATH");
 
 
                 item.setSmallPicURL(path.getFileName().toString());
