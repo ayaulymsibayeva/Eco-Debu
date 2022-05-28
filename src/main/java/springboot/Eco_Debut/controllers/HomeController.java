@@ -688,8 +688,6 @@ public class HomeController {
                 return "successRegistration";
             }
         }
-
-        return "redirect:/registration?error";
     }
 
 
