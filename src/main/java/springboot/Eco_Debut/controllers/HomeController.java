@@ -1342,7 +1342,9 @@ public class HomeController {
                 file.transferTo(file2);
                 System.out.println("PAAAAAAAATH");
                 System.out.println("PAAAAAAAATH");
-
+                System.out.println("file naame"+file2.getName());
+                System.out.println("file naame"+file2.getName());
+                System.out.println("file naame"+file2.getName());
 
                 item.setSmallPicURL(file.getOriginalFilename());
 
