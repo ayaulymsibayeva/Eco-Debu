@@ -13,7 +13,7 @@
                                 <input class="form-control" type="text" name="item_name"  placeholder="Поиск...">
                             </div>
                             <div class="col-3">
-                                <button class="btn btn-primary" style="background-color: rgba(21,97,69,0.93);width: 170px" th:text="#{search}"></button>
+                                <button class="btn btn-success form-control" style="width: 170px" th:text="#{search}"></button>
                             </div>
                         </div>
                     </form>
@@ -123,16 +123,6 @@
                 </div>
             </div>
 
-    <script type="text/javascript">
-        const number = (id) => {
-            //Код jQuery, установливающий маску для ввода телефона элементу input
-            //1. После загрузки страницы,  когда все элементы будут доступны выполнить...
-            $(function () {
-                //2. Получить элемент, к которому необходимо добавить маску
-                $("#phone").mask("8(999) 999-9999");
-            });
-        }
-    </script>
 
     </div>
 

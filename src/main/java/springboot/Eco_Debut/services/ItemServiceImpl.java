@@ -34,8 +34,6 @@ public class ItemServiceImpl implements ItemService {
     @Autowired
     private CommentsRepository commentsRepository;
 
-    @Autowired
-    private CitiesRepository cityRepository;
 
     @Override
     public Items addItem(Items item) {
@@ -333,10 +331,6 @@ public class ItemServiceImpl implements ItemService {
         commentsRepository.delete(comment);
     }
 
-    @Override
-    public List<Cities> getAllCities() {
-        return cityRepository.findAll();
-    }
 
     @Override
     public List<Comments> itemComments(Long id) {
@@ -344,20 +338,4 @@ public class ItemServiceImpl implements ItemService {
     }
 
 
-    @Override
-    public Cities getCity(Long id) {
-        return cityRepository.getOne(id);
-    }
-
-
-
-    @Override
-    public Cities saveCity(Cities city) {
-        return cityRepository.save(city);
-    }
-
-    @Override
-    public void deleteCity(Cities city) {
-        cityRepository.delete(city);
-    }
 }

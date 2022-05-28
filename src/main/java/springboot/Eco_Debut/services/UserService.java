@@ -21,4 +21,5 @@ public interface UserService extends UserDetailsService {
     List<Users> getAllUsers();
 
     void sendVerificationEmail(Users user, String siteURL) throws MessagingException, UnsupportedEncodingException;
+
 }

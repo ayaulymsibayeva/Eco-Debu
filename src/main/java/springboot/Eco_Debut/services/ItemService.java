@@ -86,10 +86,6 @@ public interface ItemService {
     void deleteComment(Comments comment);
 
 
-    List<Cities> getAllCities();
-    Cities getCity(Long id);
-    Cities saveCity(Cities city);
-    void  deleteCity(Cities city);
 
 
 }

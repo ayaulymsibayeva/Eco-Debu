@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>EcoDebut</title>
+    <title>Eco Début</title>
 
     <link rel="stylesheet" type="text/css" href="/style/button.css">
 
@@ -18,17 +18,17 @@
                 <div class="row justify-content-md-left mt-3" th:hidden="${pictures.isEmpty()}" style="height: inherit">
 
                     <div class="col-2">
-                            <div class="row-3 justify-content-md-center" th:each="pic:${pictures}" style="height: inherit">
-                                <div class="card justify-content-md-center mt-1" th:id="${'card'+pic.id}"  style="width: 100%; height: inherit">
-                                    <img  th:id="${pic.id}" th:data-id="${pic.id}" onmousemove="hover(this.getAttribute('data-id'))" onmouseleave="leave(this.getAttribute('data-id'))"  onclick="change(this.getAttribute('data-id'))" th:src="@{'/viewPicture?url='+${pic!=null?pic.url:'null'}}"  class="card-img-top" alt="..." style="height: inherit">
+                            <div class="row-3 justify-content-md-center" th:each="pic:${pictures}" style="height: 100px; width: 80px; object-fit:cover">
+                                <div class="card justify-content-md-center mt-1" th:id="${'card'+pic.id}"  style="width: 80px; height: 100px; object-fit:cover">
+                                    <img  th:id="${pic.id}" th:data-id="${pic.id}" onmousemove="hover(this.getAttribute('data-id'))" onmouseleave="leave(this.getAttribute('data-id'))"  onclick="change(this.getAttribute('data-id'))" th:src="@{'/viewPicture?url='+${pic!=null?pic.url:'null'}}"  class="card-img-top" alt="..." style="height: 100px; width: 80px; object-fit:cover">
                                 </div>
                             </div>
                     </div>
 
                     <div class="col-4">
-                        <div class="card" style="width: 350px; height: inherit" >
-                            <a id="details" style="height: inherit; width: 100px"  href="#" onclick="details()" data-toggle="modal" data-target="#staticBackdrop">
-                                <img id="main-image" th:src="@{'/viewPicture?url='+${!pictures.isEmpty()?pictures.get(0).url:'null'}}" style="height: inherit; width: 400px"  class="card-img-top" alt="..."></a>
+                        <div class="card" style="width: 400px; height: 480px; object-fit:cover">
+                            <a id="details" style="height: 480px; width: 100px; object-fit:cover"  href="#" onclick="details()" data-toggle="modal" data-target="#staticBackdrop">
+                                <img id="main-image" th:src="@{'/viewPicture?url='+${!pictures.isEmpty()?pictures.get(0).url:'null'}}" style="height: 480px; width: 400px; object-fit:cover"  class="card-img-top" alt="..."></a>
                         </div>
                     </div>
 
@@ -65,7 +65,7 @@
 
 
                     <div class="alert alert-danger" role="alert" 	th:hidden="${#request.getParameter('error')==null}">
-                        <span >Incorrect email or password</span>
+                        <span >Неверный адрес электронной почты или пароль</span>
                     </div>
 
                     <form th:action="@{'/addToBasket'}" method="get" >

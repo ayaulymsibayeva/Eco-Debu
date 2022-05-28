@@ -11,7 +11,6 @@ import springboot.Eco_Debut.entities.Users;
 @Transactional
 public interface UserRepository extends JpaRepository<Users,Long> {
     Users findByEmail(String email);
-    Users findByAddress(String address);
 
     @Query("SELECT u FROM Users u WHERE u.verificationCode = :code")
     public Users findByVerificationCode(@Param("code") String code);

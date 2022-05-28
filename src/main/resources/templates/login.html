@@ -20,7 +20,7 @@
                                     <p class="text-center h1 mb-5 mx-1 mx-md-4">Вход</p>
 
                                     <div class="alert alert-danger" role="alert" 	th:hidden="${#request.getParameter('error')==null}">
-                                        <span >Incorrect email or password</span>
+                                        <span >Неверный адрес электронной почты или пароль</span>
                                     </div>
 
                                     <div class="alert alert-danger" role="alert" 	th:hidden="${#request.getParameter('notEnabled')==null}">

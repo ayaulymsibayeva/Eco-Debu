@@ -766,14 +766,11 @@ public class HomeController {
     @PreAuthorize("isAuthenticated()")
     public String updateProfile(Model model, @RequestParam(name = "email", defaultValue = "0") String email,
                                 @RequestParam(name = "fullname", defaultValue = "No value") String fullname,
-                                @RequestParam(name = "address", defaultValue = "No value") String address,
-                                @RequestParam(name = "city_id", defaultValue = "No value") Long city_id) {
+                                @RequestParam(name = "address", defaultValue = "No value") String address) {
         Users user = userService.getUserByEmail(email);
-        Cities city = itemService.getCity(city_id);
         if (user != null) {
             user.setFullName(fullname);
             user.setAddress(address);
-            user.setCity(city);
             userService.saveUser(user);
 
 
@@ -1228,7 +1225,6 @@ public class HomeController {
         if (busket != null) {
             for (Purchases purchases : busket) {
                 purchases.setBuyer(fullname);
-                purchases.setCity(user.getCity().getName());
                 purchases.setAddress(user.getAddress());
                 purchases.setDate(new Date(System.currentTimeMillis()));
                 itemService.addPurchase(purchases);

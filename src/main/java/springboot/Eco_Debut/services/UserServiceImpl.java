@@ -40,6 +40,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByEmail(email);
     }
 
+
     @Override
     public void sendVerificationEmail(Users user, String siteURL) throws MessagingException, UnsupportedEncodingException {
         String toAddress = user.getEmail();

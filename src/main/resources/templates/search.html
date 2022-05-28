@@ -23,7 +23,7 @@
                                     </select>
                                 </div>
                                 <div class="col-3">
-                                    <label style="float: right" th:text="#{label.orderByPrice}"></label>
+                                    <label th:text="#{label.orderByPrice}"></label>
                                         <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                             <label class="btn btn-secondary btn-sm" style="height: 30px">
                                                 <input type="radio" name="options" id="option2" value="ascending"> <p th:text="#{h5.asc}"></p>
@@ -34,7 +34,7 @@
                                     </div>
                                 </div>
                                 <div class="col-2 mt-4">
-                                    <button class="btn btn-primary" style="margin-top: 8px;background-color: rgba(21,97,69,0.93);width: 100px;float: right" th:text="#{search}"></button>
+                                    <button class="btn btn-success form-control" th:text="#{search}"></button>
                                 </div>
             </div>
                             <div class="row mt-3">
@@ -50,10 +50,10 @@
 
 
 
-                <div class="row row-cols-1 row-cols-md-4" style="height: inherit">
-                <div class="col mb-4" th:each="it : ${items}" style="height: inherit">
-                    <div class="card" style="height: inherit">
-                        <img style="height: inherit"  th:src="@{'/picturesItem/'+${it.smallPicURL}}" class="card-img-top" alt="...">
+                <div class="row row-cols-1 row-cols-md-4">
+                <div class="col mb-4" th:each="it : ${items}">
+                    <div class="card">
+                        <img style="height: 300px; object-fit:cover" th:src="@{'/picturesItem/'+${it.smallPicURL}}" class="card-img-top" alt="...">
                         <div class="card-body" >
                             <a style="font-weight: bold" th:href="@{'/details/'+${it.id}}" class="card-title" th:text="${it.name}"></a>
                             <h6 style="font-weight: bolder" th:text="${it.price}+'kzt'"></h6>

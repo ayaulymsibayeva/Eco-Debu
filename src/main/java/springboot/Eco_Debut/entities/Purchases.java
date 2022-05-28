@@ -39,6 +39,4 @@ public class Purchases {
     @Column(name = "address")
     private String address;
 
-    @Column(name = "city")
-    private String city;
 }
