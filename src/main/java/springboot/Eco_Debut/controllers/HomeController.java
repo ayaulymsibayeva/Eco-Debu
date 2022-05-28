@@ -28,7 +28,6 @@ import springboot.Eco_Debut.services.UserServiceImpl;
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
@@ -1314,12 +1313,6 @@ public class HomeController {
     @PostMapping(value = "/uploadPictureItem")
     public String uploadPictureItem(@RequestParam(name = "item_picture") MultipartFile file,
                                     @RequestParam(name = "item_id") Long itemId) {
-        System.out.println(file.getContentType());
-        System.out.println(file.getContentType());
-        System.out.println(file.getContentType());
-        System.out.println(file.getContentType());
-        System.out.println(file.getContentType());
-        System.out.println(file.getContentType());
         if (Objects.equals(file.getContentType(), "image/jpeg") ||Objects.equals(file.getContentType(), "image/jpg") || file.getContentType().equals("image/png")) {
             String extension;
             switch (file.getContentType()) {
@@ -1334,19 +1327,11 @@ public class HomeController {
                 String picName = UUID.randomUUID().toString();
 
                 byte[] bytes = file.getBytes();
-                System.out.println("PAAAAAAAATH");
-                System.out.println("PAAAAAAAATH");
-                File file2 = new File(uploadItemPicture + picName + extension);
-                System.out.println("PAAAAAAAATH");
+                Path path = Paths.get(uploadItemPicture + picName + extension);
+                Files.write(path, bytes);
 
-                file.transferTo(file2);
-                System.out.println("PAAAAAAAATH");
-                System.out.println("PAAAAAAAATH");
-                System.out.println("file naame"+file2.getName());
-                System.out.println("file naame"+file2.getName());
-                System.out.println("file naame"+file2.getName());
 
-                item.setSmallPicURL(file.getOriginalFilename());
+                item.setSmallPicURL(path.getFileName().toString());
 
                 itemService.saveItem(item);
                 return "redirect:/detailsAdmin/" + itemId;
