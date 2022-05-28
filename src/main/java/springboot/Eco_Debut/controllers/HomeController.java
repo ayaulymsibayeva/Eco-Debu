@@ -1336,14 +1336,11 @@ public class HomeController {
                 byte[] bytes = file.getBytes();
                 System.out.println("PAAAAAAAATH");
                 System.out.println("PAAAAAAAATH");
-                System.out.println("PAAAAAAAATH");
-                System.out.println("PAAAAAAAATH");
                 File file2 = new File(uploadItemPicture + picName + extension);
+                System.out.println("PAAAAAAAATH");
 
                 Path path = Paths.get(uploadItemPicture + picName + extension);
                 Files.write(path, bytes);
-                System.out.println("PAAAAAAAATH");
-                System.out.println("PAAAAAAAATH");
                 System.out.println("PAAAAAAAATH");
                 System.out.println("PAAAAAAAATH");
 
